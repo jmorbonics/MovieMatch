@@ -25,11 +25,17 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#e2e2e2",
-    placeholderTextColor: "#858585",
+    // placeholderTextColor: "#858585",
     borderColor: "#c8c8c8",
     borderRadius: 7,
     borderWidth: 3,
     maxWidth: 100,
+  },
+  button: {
+    backgroundColor: '#cce',
+    padding: 10,
+    borderRadius: 15,
+    margin: 10,
   },
 });
 
