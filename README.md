@@ -1,15 +1,8 @@
-# React Native Example App
+# MovieMatch: a hackathon project
 
-This example demonstrates how to use Convex with React Native.
+Helps people settle those movie-night debates a little bit easier.
+Swipe through possible choices catered to your interests.
 
-This app is a messages app built using [Expo](https://expo.dev/) following the
-[React Native Convex quickstart](https://docs.convex.dev/quickstart/react-native).
-
-## Running the App
-
-Run:
-
-```
-npm install
-npm start
-```
+Made for TreeHacks 2024 by:
+ - Cooper Roalson
+ - 
