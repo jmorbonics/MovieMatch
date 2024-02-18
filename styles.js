@@ -2,12 +2,15 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   body: {
-    backgroundColor: "#1a4fa3",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    flexGrow: 1,
-    flexShrink: 0,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  login: {
+    flex: 1, // Make sure the login screen fills the entire screen
+    backgroundColor: "#000000", // Set background to black for the login screen
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     backgroundColor: "#508cba",
@@ -16,20 +19,14 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     textAlign: "center",
   },
-  login: {
-    backgroundColor: "#d1d1d1",
-    borderRadius: 7,
-    borderWidth: 3,
-    borderColor: "#c0c0c0",
-    maxWidth: 130,
-  },
   input: {
-    backgroundColor: "#e2e2e2",
-    // placeholderTextColor: "#858585",
-    borderColor: "#c8c8c8",
-    borderRadius: 7,
-    borderWidth: 3,
-    maxWidth: 100,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    marginTop: 10,
+    paddingHorizontal: 10,
+    borderRadius: 5,
   },
   button: {
     backgroundColor: '#cce',

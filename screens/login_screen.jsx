@@ -3,6 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useState } from "react";
 import styles from "../styles";
 import Button from '../components/button.component';
+import bgmovie from '../assets/bgmovie.png';
+
+// <bgmovie source={bgmovie} style={styles.bgmovie}>
+//   {/* Your login screen content goes here */}
+// </bgmovie>
 import { UserContext } from '../App';
 
 const LoginScreen = ({props, navigation}) => {
@@ -21,7 +26,7 @@ const LoginScreen = ({props, navigation}) => {
 
     return (
         <View style={styles.login}>
-            <Text>Login:</Text>
+            <Text style={styles.label}>Login:</Text> {/* Add label with white font color */}
             <TextInput
                 style={styles.input}
                 onChangeText={setText}
@@ -33,7 +38,7 @@ const LoginScreen = ({props, navigation}) => {
             <Button
               title='Submit'
               onPress={handleSubmit}
-              style={styles.button}
+              style={[styles.button, { backgroundColor: '#9c0000' }]} // Make button red
             />
             <StatusBar style='auto' />
         </View>
