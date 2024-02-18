@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 36,
-    fontFamily: 'FreeMono',
     letterSpacing: 1,
     color: '#AAA',
   },
