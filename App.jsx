@@ -12,6 +12,7 @@ import GroupsScreen from "./screens/group_screen";
 import styles from "./styles"
 import { api } from "./convex/_generated/api";
 import { Text, SafeAreaView } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 
 
@@ -44,17 +45,35 @@ function MovieMatchApp() {
                 <Tab.Screen
                   name='Feed'
                   component={FeedScreen}
-                  options={{ title: 'Feed' }}
+                  options={{
+                    title: 'Feed',
+                    tabBarLabel: 'Feed',
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons name="home" color={color} size={size} />
+                    ),
+                  }}
                 />
                 <Tab.Screen
                   name='Search'
                   component={SearchScreen}
-                  options={{ title: 'Search' }}
+                  options={{
+                    title: 'Search',
+                    tabBarLabel: 'Search',
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons name="search" color={color} size={size} />
+                    ),
+                  }}
                 />
                 <Tab.Screen
                   name='Groups'
                   component={GroupsScreen}
-                  options={{ title: 'Groups' }}
+                  options={{
+                    title: 'Groups',
+                    tabBarLabel: 'Groups',
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons name="list" color={color} size={size} />
+                    ),
+                  }}
                 />
               </Tab.Navigator>
             </NavigationContainer>
