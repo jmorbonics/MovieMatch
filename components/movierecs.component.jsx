@@ -2,12 +2,12 @@ import { ScrollView, Image, View, TouchableOpacity, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from "../styles";
 
-const MovieRecs = () => {
+const MovieRecs = ({ searchWord }) => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     const getMovieRequest = async () => {
-        const url = "http://www.omdbapi.com/?s=star wars&apikey=3d71d1bb";
+        const url = "http://www.omdbapi.com/?s=${searchWord}&apikey=3d71d1bb";
     
         try {
             const response = await fetch(url);
@@ -39,7 +39,7 @@ const MovieRecs = () => {
                     <View style={{ margin: 10 }}>
                         <Image
                             source={{ uri: movie.Poster }}
-                            style={{ width: 150, height: 225 }}
+                            style={{ width: 266, height: 400 }}
                         />
                         <Text>{movie.Title}</Text>
                     </View>

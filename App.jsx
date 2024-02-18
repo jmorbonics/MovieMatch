@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/login_screen';
 import FeedScreen from './screens/feed_screen';
 import SearchScreen from './screens/search_screen';
+import ResultScreen from './screens/result_screen';
 import styles from "./styles"
 import { api } from "./convex/_generated/api";
 import { Text, SafeAreaView } from "react-native";
@@ -19,9 +20,8 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
-  const [search, setSearch] = useState("");
 
-  var userData = useQuery(api.functions.getUserData, { username: username });
+  var userData = useQuery(api.functions.getUserData, { username: username});
   const setUserData = useMutation(api.functions.setUserData);
 
   if (userData === null) {
@@ -51,8 +51,13 @@ function MovieMatchApp() {
                   component={SearchScreen}
                   options={{ title: 'Search' }}
                 />
-              </Tab.Navigator>
-            </NavigationContainer>
+                <Tab.Screen
+                  name='Results'
+                  component={ResultScreen}
+                  options={{ title: 'Results' }}
+                />
+          
+          </Tab.Navigator>
           
           )
           }
