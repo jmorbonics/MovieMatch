@@ -32,7 +32,7 @@ const GroupsScreen = ({ navigation, route }) => {
     }
 
     
-    if (group == "") {
+    if (group.groupname == "") {
         return (
             <SafeAreaView style={styles.body}>
                 <>
