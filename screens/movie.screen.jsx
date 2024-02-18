@@ -3,6 +3,8 @@ import { Text, SafeAreaView, Button } from "react-native";
 import styles from "../styles";
 import { api } from "../convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
+import Taskbar from '../components/taskbar.component';
+
 
 export default MovieScreen = ({ navigation, route }) => {
     const { username } = route.params;
@@ -10,7 +12,6 @@ export default MovieScreen = ({ navigation, route }) => {
 
     const userData = useQuery(api.functions.getUserData, { username: username });
 
-    
     useEffect(() => {
         if (userData !== undefined && userData !== null) {
             setVal(userData.testVal);

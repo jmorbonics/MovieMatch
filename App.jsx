@@ -21,7 +21,7 @@ export default function App() {
   return (
     <ConvexProvider client={convex}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Movie'>
+        <Stack.Navigator initialRouteName='Login'>
           <Stack.Screen
             name='Movie'
             component={MusicMatchApp}
@@ -30,7 +30,7 @@ export default function App() {
           <Stack.Screen
             name='Login'
             component={LoginScreen}
-            options={{ title: 'Login' }}
+            options={{ title: 'Login', headerShown: false}}
           />
         </Stack.Navigator>
       </NavigationContainer>

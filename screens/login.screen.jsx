@@ -1,47 +1,39 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import styles from "../styles";
 import Button from '../components/button.component';
 
-const LoginScreen = ({props, navigation}) => {
-    const [username, setUsername] = useState('');
-    const handleSubmit = () => {
-        // Pass the username to the Movie screen
-        navigation.navigate('Movie', { username: username });
-    };
+const LoginScreen = ({ navigation }) => {
+  const [username, setUsername] = useState('');
 
-    return (
-        <View style={styles.login}>
-            <Text>Login:</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={(text) => setUsername(text)}
-                onSubmitEditing={handleSubmit}
-                value={username}
-                placeholder="Username"
-            />
+  const handleSubmit = () => {
+    if (navigation) {
+      navigation.navigate('Movie', { username: username });
+    }
+  };
 
-            <Button
-              title='Go to Movie'
-              onPress={handleSubmit}
-              style={styles.button}
-            />
-            <StatusBar style='auto' />
-        </View>
-    );
+  return (
+    <SafeAreaView style={styles.body}>
+      <View style={styles.login}>
+          <Text>Login:</Text>
+          <TextInput
+              style={styles.input}
+              onChangeText={(text) => setUsername(text)}
+              onSubmitEditing={handleSubmit}
+              value={username}
+              placeholder="Username"
+          />
+
+          <Button
+            title='Go to Movie'
+            onPress={handleSubmit}
+            style={styles.button}
+          />
+          <StatusBar style='auto' />
+      </View>
+    </SafeAreaView>
+  );
 };
 
-export default LoginScreen
-
-    // const [username, setUsername] = useState("");
-
-    // async function handleSubmit(event) {
-    //     event.preventDefault();
-    //     let regex = new RegExp(/^[a-zA-Z]\w*$/);
-    //     if (regex.test(username)) {
-    //         props.onSubmitUsername(username);
-    //     } else {
-    //         setUsername("");
-    //     }
-    // }
+export default LoginScreen;
