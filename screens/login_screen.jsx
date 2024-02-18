@@ -26,7 +26,7 @@ const LoginScreen = (props) => {
     return (
         <SafeAreaView style={styles.background}>
             <Text style={styles.titleapp}>MovieMatch</Text>
-            <Text></Text>
+            <Text style={{ fontSize: 14, color: '#e60000' }}>Your Favorite Movie Matchmaker</Text>
             <Text></Text>
             <Text></Text>
             <TextInput

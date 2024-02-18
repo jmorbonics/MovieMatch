@@ -39,7 +39,7 @@ export default MovieView = (props) => {
                         source={{ uri: movieInfo.Poster }}
                         style={{ width: 333, height: 500 }}
                     />
-                    <Text>{movieInfo.Title}</Text>
+                    <Text style={{fontSize: 18, textAlign: 'center', color: 'white', marginTop: 5}}>{movieInfo.Title}</Text>
                 </View>
             </TouchableOpacity>
         ) :
