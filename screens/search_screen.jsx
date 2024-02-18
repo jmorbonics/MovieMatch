@@ -12,6 +12,7 @@ const SearchScreen = ({ navigation, route }) => {
 
     const handleSubmit = async (event) => {
         setSearch(text);
+        //<MovieRecs searchWord={searchval}></MovieRecs>
     };
 
     
