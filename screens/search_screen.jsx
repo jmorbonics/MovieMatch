@@ -12,13 +12,12 @@ const SearchScreen = ({ navigation, route }) => {
 
     const handleSubmit = async (event) => {
         setSearch(text);
-        //<MovieRecs searchWord={searchval}></MovieRecs>
     };
 
     
     if (searchval == "") {
         return (
-            <SafeAreaView style={styles.body}>
+            <SafeAreaView style={[styles.body, {backgroundColor: "#222222"}]}>
                 <>
                     <Text style={styles.title}>Search for a movie below:</Text>
                     <TextInput
@@ -33,17 +32,20 @@ const SearchScreen = ({ navigation, route }) => {
         );
     } else {
         return (
-            <SafeAreaView style={styles.body}>
+            <SafeAreaView style={[styles.body, {backgroundColor: "#222222"}]}>
                 <>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setText}
-                        onSubmitEditing={handleSubmit}
-                        value={text}
-                        placeholder="Movie Title"
-                    />
-                    <Text></Text>
-                    <Text style={styles.title}>Searching for {searchval}:</Text>
+                    <View style={styles.container}>
+                        <View style={styles.box}>
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={setText}
+                                onSubmitEditing={handleSubmit}
+                                value={text}
+                                placeholder="Movie Title"
+                            />
+                        </View>
+                        <Text style={styles.title}>Searching for {searchval}</Text>
+                    </View>
                     <MovieRecs searchWord={searchval}></MovieRecs>
                 </>
             </SafeAreaView>
@@ -52,4 +54,4 @@ const SearchScreen = ({ navigation, route }) => {
 
 };
 
-export default SearchScreen
+export default SearchScreen;

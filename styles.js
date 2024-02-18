@@ -8,19 +8,25 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1, // Make sure the login screen fills the entire screen
-    backgroundColor: "#172a69", // Set background to black for the login screen
+    backgroundColor: "#222222", // Set background to black for the login screen
     justifyContent: "center",
     alignItems: "center",
   },
+  titleapp: {
+    fontSize: 50,
+    letterSpacing: 1,
+    color: '#AAA',
+  },
   title: {
-    backgroundColor: "#508cba",
+    backgroundColor: "#ffffff",
     fontSize: 36,
     padding: 5,
+    marginTop: 20,
     borderWidth: 5,
     textAlign: "center",
   },
   loading: {
-    backgroundColor: "#d3d3d3",
+    backgroundColor: "#6e0202",
     fontSize: 28,
     borderWidth: 5,
     borderRadius: 10,
@@ -40,19 +46,32 @@ const styles = StyleSheet.create({
     placeholderTextColor: '#CCC',
   },
   button: {
-    backgroundColor: '#694ca8',
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
     padding: 10,
     borderRadius: 15,
     margin: 10,
     color: '#777',
     borderWidth: 3,
-    borderColor: '#482e80',
+    borderColor: '#ffffff',
   },
   label: {
     fontSize: 36,
     letterSpacing: 1,
     color: '#AAA',
+  },
+  div: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
 });
 
