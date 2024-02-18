@@ -81,6 +81,35 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "black",
   },
+  groupTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    marginTop: 60,
+    marginBottom: 6,
+  },
+  membersContainer: {
+    fontSize: 17,
+    padding: 20,
+    borderRadius: 15,
+    margin: 10,
+    color: '#777',
+    borderWidth: 3,
+    borderColor: '#e60000',
+    width: 300,
+    alignContent: 'center',
+    height: 200,
+
+  },
+  membersTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#e60000',
+    textAlign: 'center',
+  },
+  groupInfo: {
+    fontSize: 17,
+  }
 });
 
 export default styles;

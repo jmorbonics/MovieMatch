@@ -61,17 +61,23 @@ const GroupMenu = (props) => {
 
     return (
     <>
-        <Text style={styles.title}>Group:</Text>
-        <Text style={styles.title}>{groupData.groupname}</Text>
-        <Text style={styles.body}>Group ID: {userData.groupID}</Text>
-        
-        <View>
-            <Text style={styles.body}>Members:</Text>
-            <FlatList 
-                title="Members:"
-                data={members}
-                renderItem={(m) => <Text style={styles.body}>{m.item === undefined ? "Loading..." : m.item.username}</Text>}
-            />
+        <View style={styles.groupContainer}>
+            <Text style={styles.groupTitle}>Group: {groupData.groupname}</Text>
+            <Text style={styles.groupInfo}>Group ID: {userData.groupID}</Text>
+
+            <View style={styles.membersContainer}>
+                <Text style={styles.membersTitle}>Members:</Text>
+                <FlatList
+                    data={members}
+                    keyExtractor={(item) => item?._id}
+                    renderItem={({ item }) => (
+                        <Text style={styles.memberName}>{item?.username || "Loading..."}</Text>
+                    )}
+                />
+            </View>
+            <Text style={styles.groupInfo}>Add members to your group using your unique group ID! </Text>
+            <Text style={styles.groupInfo}>Group members can see your favorite movies and send you in-app movie recommendations.</Text>
+                        
         </View>
     </>);
 }
