@@ -5,4 +5,6 @@ Swipe through possible choices catered to your interests.
 
 Made for TreeHacks 2024 by:
  - Cooper Roalson
- - 
+ - Jack Morby
+ - Shreya Chakraborty
+ - Bhoomi Kotharkar
