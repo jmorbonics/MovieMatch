@@ -7,7 +7,7 @@ const MovieRecs = ({ searchWord }) => {
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     const getMovieRequest = async () => {
-        const url = "http://www.omdbapi.com/?s=${searchWord}&apikey=3d71d1bb";
+        const url = "http://www.omdbapi.com/?s=" + searchWord + "&apikey=3d71d1bb";
     
         try {
             const response = await fetch(url);
@@ -42,6 +42,7 @@ const MovieRecs = ({ searchWord }) => {
                             style={{ width: 266, height: 400 }}
                         />
                         <Text>{movie.Title}</Text>
+                        <Text>{searchWord}</Text>
                     </View>
                 </TouchableOpacity>
             ))}

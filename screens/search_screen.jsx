@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Text, SafeAreaView, Button, StyleSheet, TextInput, View } from "react-native";
 import styles from "../styles";
 import { UserContext } from "../App";
+import MovieRecs from "../components/movierecs.component";
 
 const SearchScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
@@ -11,6 +12,7 @@ const SearchScreen = ({ navigation, route }) => {
 
     const handleSubmit = async (event) => {
         setSearch(text);
+        //<MovieRecs searchWord={searchval}></MovieRecs>
     };
 
     
@@ -42,7 +44,7 @@ const SearchScreen = ({ navigation, route }) => {
                     />
                     <Text></Text>
                     <Text style={styles.title}>Searching for {searchval}:</Text>
-                    {/* put movie recs here */}
+                    <MovieRecs searchWord={searchval}></MovieRecs>
                 </>
             </SafeAreaView>
         );
