@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TextInput, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useState } from "react";
 import styles from "../styles";
@@ -25,7 +25,7 @@ const LoginScreen = ({props, navigation}) => {
     };
 
     return (
-        <View style={styles.login}>
+        <SafeAreaView style={styles.background}>
             <Text style={styles.label}>Login:</Text> {/* Add label with white font color */}
             <TextInput
                 style={styles.input}
@@ -36,12 +36,12 @@ const LoginScreen = ({props, navigation}) => {
             />
 
             <Button
-              title='Submit'
+              title='Log In'
               onPress={handleSubmit}
-              style={[styles.button, { backgroundColor: '#9c0000' }]} // Make button red
+              style={styles.button}
             />
             <StatusBar style='auto' />
-        </View>
+        </SafeAreaView>
     );
 };
 
