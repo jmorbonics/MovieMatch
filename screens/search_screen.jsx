@@ -3,34 +3,49 @@ import { Text, SafeAreaView, Button, StyleSheet, TextInput, View } from "react-n
 import styles from "../styles";
 import { UserContext } from "../App";
 
-const FeedScreen = ({ navigation, route }) => {
+const SearchScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
     const [text, setText] = useState('');
+    const [searchval, setSearch] = useState('');
     
+
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        let regex = new RegExp(/^[a-zA-Z]\w*$/);
-        if (regex.test(text)) {
-            setSearch(text);
-        } else {
-            setText("");
-        }
+        setSearch(text);
     };
 
-    return (
-        <SafeAreaView style={styles.body}>
-            <>
-                <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setText}
-                    onSubmitEditing={handleSubmit}
-                    value={text}
-                    placeholder="Movie Title"
-                />
-            </>
-        </SafeAreaView>
-    );
+    
+    if (searchval == "") {
+        return (
+            <SafeAreaView style={styles.body}>
+                <>
+                    <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setText}
+                        onSubmitEditing={handleSubmit}
+                        value={text}
+                        placeholder="Movie Title"
+                    />
+                </>
+            </SafeAreaView>
+        );
+    } else {
+        return (
+            <SafeAreaView style={styles.body}>
+                <>
+                    <Text style={styles.title}>Hello {username}! Searching for {searchval}:</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setText}
+                        onSubmitEditing={handleSubmit}
+                        value={text}
+                        placeholder="Movie Title"
+                    />
+                </>
+            </SafeAreaView>
+        );
+    }
+
 };
 
-export default FeedScreen
+export default SearchScreen

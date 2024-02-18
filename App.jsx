@@ -17,9 +17,8 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
-  const [search, setSearch] = useState("");
 
-  var userData = useQuery(api.functions.getUserData, { username: username });
+  var userData = useQuery(api.functions.getUserData, { username: username});
   const setUserData = useMutation(api.functions.setUserData);
 
   if (userData === undefined || userData === null) {
@@ -28,7 +27,8 @@ function MovieMatchApp() {
   }
 
   return (
-      <UserContext.Provider value={{ username: username, setUsername: setUsername, userData: userData, setUserData: setUserData }}>
+      <UserContext.Provider value={{ username: username, setUsername: setUsername,
+          userData: userData, setUserData: setUserData }}>
         <NavigationContainer>
          {
           username.length == 0 ? (
