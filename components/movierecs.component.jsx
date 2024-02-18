@@ -1,4 +1,4 @@
-import { ScrollView, Image, View, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, Image, View, TouchableOpacity, Text, Modal, Button } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from "../styles";
 
@@ -6,6 +6,7 @@ const MovieRecs = ({ searchWord }) => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isModalVisible, setModalVisible] = useState(false);
 
     const getMovieRequest = async () => {
         setLoading(true);
@@ -34,6 +35,12 @@ const MovieRecs = ({ searchWord }) => {
 
     const handleMoviePress = (index) => {
         setSelectedMovie(movies[index]);
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+        setSelectedMovie(null);
     };
 
     return (
@@ -54,11 +61,20 @@ const MovieRecs = ({ searchWord }) => {
                     </View>
                 </TouchableOpacity>
             ))}
-            {selectedMovie && (
-                <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{selectedMovie.Title}</Text>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isModalVisible}
+                onRequestClose={closeModal}
+            >
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, elevation: 5 }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{selectedMovie?.Title}</Text>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>{selectedMovie?.Year}</Text>
+                        <Button title="Close" onPress={closeModal} />
+                    </View>
                 </View>
-            )}
+            </Modal>
         </ScrollView>
     );
 };
