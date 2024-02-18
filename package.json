@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.3",
+    "@react-navigation/bottom-tabs": "^6.5.12",
     "@react-navigation/native": "^6.1.10",
-    "@react-navigation/native-stack": "^6.9.18",
     "@types/react": "~18.2.45",
     "convex": "^1.9.0",
     "dotenv": "^16.4.4",

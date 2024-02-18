@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "musicmatch",
-    "slug": "musicmatch",
+    "name": "moviecmatch",
+    "slug": "moviecmatch",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

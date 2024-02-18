@@ -1,53 +1,76 @@
-import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexProvider, ConvexReactClient, useAction, useMutation, useQuery } from "convex/react";
 import { CONVEX_URL } from "@env";
-import React, { StrictMode, useState } from "react";
-// import MusicMatchApp from "./src/MusicMatch";
+import React, { useEffect, useState } from "react";
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import LoginScreen from './screens/login.screen';
-import MusicMatchApp from './screens/movie.screen';
+import LoginScreen from './screens/login_screen';
+import FeedScreen from './screens/feed_screen';
+import SearchScreen from './screens/search_screen';
+import { api } from "./convex/_generated/api";
 
 
-const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+export const UserContext = React.createContext(null);
+
+function MovieMatchApp() {
+  const [username, setUsername] = useState("");
+
+  var userData = useQuery(api.functions.getUserData, { username: username });
+  const setUserData = useMutation(api.functions.setUserData);
+
+  if (userData === undefined || userData === null) {
+    // Defualt new user data
+    userData = {username: username, testVal: 0};
+  }
+
+  return (
+      <UserContext.Provider value={{ username: username, setUsername: setUsername, userData: userData, setUserData: setUserData }}>
+        <NavigationContainer>
+         {
+          username.length == 0 ? (
+            <Tab.Navigator>
+            <Tab.Screen
+                  name='Login'
+                  component={LoginScreen}
+                  options={{ title: 'Login' }}
+                />
+                </Tab.Navigator>
+          
+          ) : (
+            
+            <Tab.Navigator screenOptions={{ headerShown: false }}>
+                <Tab.Screen
+                  name='Feed'
+                  component={FeedScreen}
+                  options={{ title: 'Feed' }}
+                />
+                <Tab.Screen
+                  name='Search'
+                  component={SearchScreen}
+                  options={{ title: 'Search' }}
+                />
+          
+          </Tab.Navigator>
+          
+          )
+          }
+        </NavigationContainer>
+      </UserContext.Provider>
+  );
+}
 
 export default function App() {
   const convex = new ConvexReactClient(CONVEX_URL, {
     // We need to disable this to be compatible with React Native
     unsavedChangesWarning: false,
   });
-  const [username, setUsername] = useState("");
+
   return (
-    <ConvexProvider client={convex}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Movie'>
-          <Stack.Screen
-            name='Movie'
-            component={MusicMatchApp}
-            options={{ title: 'Movie' }}
-          />
-          <Stack.Screen
-            name='Login'
-            component={LoginScreen}
-            options={{ title: 'Login' }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ConvexProvider>
+  <ConvexProvider client={convex}>
+    <MovieMatchApp />
+  </ConvexProvider>
   );
 }
-
-// export default App = () => {
-//   const convex = new ConvexReactClient(CONVEX_URL, {
-//     // We need to disable this to be compatible with React Native
-//     unsavedChangesWarning: false,
-//   });
-//   return (
-//     <StrictMode>
-//       <ConvexProvider client={convex}>
-//         <MusicMatchApp />
-//       </ConvexProvider>
-//     </StrictMode>
-//   );
-// };

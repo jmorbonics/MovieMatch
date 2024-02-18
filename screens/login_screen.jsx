@@ -1,14 +1,22 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles";
 import Button from '../components/button.component';
+import { UserContext } from '../App';
 
 const LoginScreen = ({props, navigation}) => {
-    const [username, setUsername] = useState('');
-    const handleSubmit = () => {
-        // Pass the username to the Movie screen
-        navigation.navigate('Movie', { username: username });
+    const [text, setText] = useState('');
+    const { username, setUsername } = useContext(UserContext);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        let regex = new RegExp(/^[a-zA-Z]\w*$/);
+        if (regex.test(text)) {
+            setUsername(text);
+        } else {
+            setText("");
+        }
     };
 
     return (
@@ -16,14 +24,14 @@ const LoginScreen = ({props, navigation}) => {
             <Text>Login:</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={(text) => setUsername(text)}
+                onChangeText={setText}
                 onSubmitEditing={handleSubmit}
-                value={username}
+                value={text}
                 placeholder="Username"
             />
 
             <Button
-              title='Go to Movie'
+              title='Submit'
               onPress={handleSubmit}
               style={styles.button}
             />
