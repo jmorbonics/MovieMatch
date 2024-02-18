@@ -8,19 +8,19 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1, // Make sure the login screen fills the entire screen
-    backgroundColor: "#172a69", // Set background to black for the login screen
+    backgroundColor: "#6e0202", // Set background to black for the login screen
     justifyContent: "center",
     alignItems: "center",
   },
   title: {
-    backgroundColor: "#508cba",
+    backgroundColor: "#ffffff",
     fontSize: 36,
     padding: 5,
     borderWidth: 5,
     textAlign: "center",
   },
   loading: {
-    backgroundColor: "#d3d3d3",
+    backgroundColor: "#6e0202",
     fontSize: 28,
     borderWidth: 5,
     borderRadius: 10,
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     placeholderTextColor: '#CCC',
   },
   button: {
-    backgroundColor: '#694ca8',
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
     padding: 10,
     borderRadius: 15,
     margin: 10,
     color: '#777',
     borderWidth: 3,
-    borderColor: '#482e80',
+    borderColor: '#ffffff',
   },
   label: {
     fontSize: 36,
