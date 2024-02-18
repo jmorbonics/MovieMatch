@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/login_screen';
 import FeedScreen from './screens/feed_screen';
 import SearchScreen from './screens/search_screen';
+import GroupsScreen from "./screens/group_screen";
 import styles from "./styles"
 import { api } from "./convex/_generated/api";
 import { Text, SafeAreaView } from "react-native";
@@ -25,7 +26,7 @@ function MovieMatchApp() {
 
   if (userData === null) {
     // Defualt new user data
-    userData = {username: username, testVal: 0};
+    userData = {};
   }
 
   return userData === undefined ? (
@@ -49,6 +50,11 @@ function MovieMatchApp() {
                   name='Search'
                   component={SearchScreen}
                   options={{ title: 'Search' }}
+                />
+                <Tab.Screen
+                  name='Groups'
+                  component={GroupsScreen}
+                  options={{ title: 'Groups' }}
                 />
               </Tab.Navigator>
             </NavigationContainer>

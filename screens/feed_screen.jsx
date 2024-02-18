@@ -6,10 +6,13 @@ import { UserContext } from "../App";
 export default FeedScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
     
-    const val = userData.testVal;
+    let val = userData.testVal;
+    if (val === undefined) {
+        val = 0;
+    }
 
     function handleIncrement() {
-        setUserData({ username: username, testVal: val + 1 });
+        setUserData({ username: username, data: {testVal: val + 1 }});
     }
 
     return (
