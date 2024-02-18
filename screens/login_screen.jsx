@@ -43,13 +43,3 @@ const LoginScreen = ({props, navigation}) => {
 export default LoginScreen
 
     // const [username, setUsername] = useState("");
-
-    // async function handleSubmit(event) {
-    //     event.preventDefault();
-    //     let regex = new RegExp(/^[a-zA-Z]\w*$/);
-    //     if (regex.test(username)) {
-    //         props.onSubmitUsername(username);
-    //     } else {
-    //         setUsername("");
-    //     }
-    // }
