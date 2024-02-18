@@ -6,31 +6,48 @@ import { UserContext } from "../App";
 const SearchScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
     const [text, setText] = useState('');
+    const [searchval, setSearch] = useState("");
     
+
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        let regex = new RegExp(/^[a-zA-Z]\w*$/);
-        if (regex.test(text)) {
-            setSearch(text);
-        } else {
-            setText("");
-        }
+        setSearch(text);
     };
 
-    return (
-        <SafeAreaView style={styles.body}>
-            <>
-                <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setText}
-                    onSubmitEditing={handleSubmit}
-                    value={text}
-                    placeholder="Movie Title"
-                />
-            </>
-        </SafeAreaView>
-    );
+    
+    if (searchval == "") {
+        return (
+            <SafeAreaView style={styles.body}>
+                <>
+                    <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setText}
+                        onSubmitEditing={handleSubmit}
+                        value={text}
+                        placeholder="Movie Title"
+                    />
+                </>
+            </SafeAreaView>
+        );
+    } else {
+        return (
+            <SafeAreaView style={styles.body}>
+                <>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setText}
+                        onSubmitEditing={handleSubmit}
+                        value={text}
+                        placeholder="Movie Title"
+                    />
+                    <Text></Text>
+                    <Text style={styles.title}>Searching for {searchval}:</Text>
+                    {/* put movie recs here */}
+                </>
+            </SafeAreaView>
+        );
+    }
+
 };
 
-export default FeedScreen
+export default SearchScreen

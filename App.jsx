@@ -9,7 +9,9 @@ import LoginScreen from './screens/login_screen';
 import FeedScreen from './screens/feed_screen';
 import SearchScreen from './screens/search_screen';
 import ResultScreen from './screens/result_screen';
+import styles from "./styles"
 import { api } from "./convex/_generated/api";
+import { Text, SafeAreaView } from "react-native";
 
 
 
@@ -18,32 +20,27 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
-  const [search, setSearch] = useState("");
 
-  var userData = useQuery(api.functions.getUserData, { username: username });
+  var userData = useQuery(api.functions.getUserData, { username: username});
   const setUserData = useMutation(api.functions.setUserData);
 
-  if (userData === undefined || userData === null) {
+  if (userData === null) {
     // Defualt new user data
     userData = {username: username, testVal: 0};
   }
 
-  return (
+  return userData === undefined ? (
+      <SafeAreaView style={styles.background}>
+        <Text style={styles.loading}>Loading...</Text>
+      </SafeAreaView>
+    ) : (
       <UserContext.Provider value={{ username: username, setUsername: setUsername, userData: userData, setUserData: setUserData }}>
-        <NavigationContainer>
          {
           username.length == 0 ? (
-            <Tab.Navigator>
-            <Tab.Screen
-                  name='Login'
-                  component={LoginScreen}
-                  options={{ title: 'Login' }}
-                />
-                </Tab.Navigator>
-          
+            <LoginScreen />
           ) : (
-            
-            <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <NavigationContainer>
+              <Tab.Navigator screenOptions={{ headerShown: false }}>
                 <Tab.Screen
                   name='Feed'
                   component={FeedScreen}
@@ -64,7 +61,6 @@ function MovieMatchApp() {
           
           )
           }
-        </NavigationContainer>
       </UserContext.Provider>
   );
 }
