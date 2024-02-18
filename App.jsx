@@ -8,7 +8,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/login_screen';
 import FeedScreen from './screens/feed_screen';
 import SearchScreen from './screens/search_screen';
-import ResultScreen from './screens/result_screen';
 import styles from "./styles"
 import { api } from "./convex/_generated/api";
 import { Text, SafeAreaView } from "react-native";
@@ -51,13 +50,8 @@ function MovieMatchApp() {
                   component={SearchScreen}
                   options={{ title: 'Search' }}
                 />
-                <Tab.Screen
-                  name='Results'
-                  component={ResultScreen}
-                  options={{ title: 'Results' }}
-                />
-          
-          </Tab.Navigator>
+              </Tab.Navigator>
+            </NavigationContainer>
           
           )
           }
