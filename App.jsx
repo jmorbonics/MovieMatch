@@ -52,6 +52,11 @@ function MovieMatchApp() {
                   component={SearchScreen}
                   options={{ title: 'Search' }}
                 />
+                <Tab.Screen
+                  name='Results'
+                  component={ResultsScreen}
+                  options={{ title: 'Results' }}
+                />
           
           </Tab.Navigator>
           
