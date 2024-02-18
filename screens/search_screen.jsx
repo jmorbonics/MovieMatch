@@ -5,7 +5,7 @@ import { UserContext } from "../App";
 import MovieRecs from "../components/movierecs.component";
 
 const SearchScreen = ({ navigation, route }) => {
-    const { username, userData, setUserData } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
     const [text, setText] = useState('');
     const [searchval, setSearch] = useState("");
     
@@ -20,7 +20,7 @@ const SearchScreen = ({ navigation, route }) => {
         return (
             <SafeAreaView style={styles.body}>
                 <>
-                    <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
+                    <Text style={styles.title}>Search for a movie below:</Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={setText}

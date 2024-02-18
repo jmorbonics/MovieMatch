@@ -10,15 +10,14 @@ import bgmovie from '../assets/bgmovie.png';
 // </bgmovie>
 import { UserContext } from '../App';
 
-const LoginScreen = ({props, navigation}) => {
+const LoginScreen = (props) => {
     const [text, setText] = useState('');
-    const { username, setUsername } = useContext(UserContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         let regex = new RegExp(/^[a-zA-Z]\w*$/);
         if (regex.test(text)) {
-            setUsername(text);
+            props.handleLogin(text);
         } else {
             setText("");
         }

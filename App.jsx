@@ -20,47 +20,42 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
+  const [userID, setUserID] = useState("");
 
-  var userData = useQuery(api.functions.getUserData, { username: username});
-  const setUserData = useMutation(api.functions.setUserData);
+  var userData = useQuery(api.functions.searchUsername, { username: username});
+  var createUser = useMutation(api.functions.createUser);
 
-  if (userData === null) {
-    // Defualt new user data
-    userData = {};
+  if (username.length > 0 && userData === null) {
+    createUser({username: username});
   }
 
-  return userData === undefined ? (
+  return username.length == 0 ? (
+    <LoginScreen handleLogin={setUsername} />
+  ) : userData === undefined || userData === null ? (
       <SafeAreaView style={styles.background}>
         <Text style={styles.loading}>Loading...</Text>
       </SafeAreaView>
-    ) : (
-      <UserContext.Provider value={{ username: username, setUsername: setUsername, userData: userData, setUserData: setUserData }}>
-         {
-          username.length == 0 ? (
-            <LoginScreen />
-          ) : (
-            <NavigationContainer>
-              <Tab.Navigator screenOptions={{ headerShown: false }}>
-                <Tab.Screen
-                  name='Feed'
-                  component={FeedScreen}
-                  options={{ title: 'Feed' }}
-                />
-                <Tab.Screen
-                  name='Search'
-                  component={SearchScreen}
-                  options={{ title: 'Search' }}
-                />
-                <Tab.Screen
-                  name='Groups'
-                  component={GroupsScreen}
-                  options={{ title: 'Groups' }}
-                />
-              </Tab.Navigator>
-            </NavigationContainer>
-          
-          )
-          }
+    ) :   (
+      <UserContext.Provider value={{ userData: userData }}>
+        <NavigationContainer>
+          <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Screen
+              name='Feed'
+              component={FeedScreen}
+              options={{ title: 'Feed' }}
+            />
+            <Tab.Screen
+              name='Search'
+              component={SearchScreen}
+              options={{ title: 'Search' }}
+            />
+            <Tab.Screen
+              name='Groups'
+              component={GroupsScreen}
+              options={{ title: 'Groups' }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
       </UserContext.Provider>
   );
 }

@@ -4,27 +4,13 @@ import styles from "../styles";
 import { UserContext } from "../App";
 
 export default FeedScreen = ({ navigation, route }) => {
-    const { username, userData, setUserData } = useContext(UserContext);
-    
-    let val = userData.testVal;
-    if (val === undefined) {
-        val = 0;
-    }
-
-    function handleIncrement() {
-        setUserData({ username: username, data: {testVal: val + 1 }});
-    }
-
+    const { userData } = useContext(UserContext);
+ 
     return (
         <SafeAreaView style={styles.body}>
             <>
-                <Text style={styles.title}>Hello {username}!</Text>
-                <Text style={styles.title}>Your var is {val}!</Text>
-                <Button
-                    onPress={handleIncrement}
-                    title="Increment!"
-                    style={styles.button}
-                />
+                <Text style={styles.title}>Hello {userData.username}!</Text>
+                <Text style={styles.title}>The feed is not yet implemented!</Text>
             </>
         </SafeAreaView>
     );
