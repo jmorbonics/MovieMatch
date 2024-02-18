@@ -60,6 +60,13 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: '#AAA',
   },
+  movieLabel: {
+    fontSize: 36,
+    letterSpacing: 1,
+    color: '#AAA',
+    width: 266,
+    flexShrink: 1,
+  },
   div: {
     borderRadius: 10,
     borderWidth: 1,

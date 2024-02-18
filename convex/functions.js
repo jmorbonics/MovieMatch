@@ -92,3 +92,13 @@ export const getGroupData = query({
     return args.groupID === undefined ? null : await ctx.db.get(args.groupID);
   }
 });
+
+export const setFavorites = mutation({
+  args: {
+    id: v.id("user_data"),
+    favorites: v.array(v.string()),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {favorites: args.favorites});
+  }
+});
