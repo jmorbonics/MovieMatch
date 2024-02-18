@@ -16,7 +16,7 @@ export default FeedScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.body}>
             <>
-                <Text style={styles.title}>Hello {username}!</Text>
+                <Text style={styles.title}>Hello {userData.username}!</Text>
                 <Button
                     onPress={handleRefresh}
                     title="Refresh!"
