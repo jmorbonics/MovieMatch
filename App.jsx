@@ -21,7 +21,6 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
-  const [userID, setUserID] = useState("");
 
   var userData = useQuery(api.functions.searchUsername, { username: username});
   var createUser = useMutation(api.functions.createUser);

@@ -10,9 +10,8 @@ export default FeedScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.body}>
             <>
-                <Text style={styles.title}>Hello {username}
-                Here is your feed!</Text>
-                <MovieRecs searchWord={val}></MovieRecs>
+                <Text style={styles.title}>Hello {userData.username}! Here is your feed!</Text>
+                <MovieRecs searchWord={"test"}></MovieRecs>
             </>
         </SafeAreaView>
     );
