@@ -17,7 +17,7 @@ const SearchScreen = ({ navigation, route }) => {
     
     if (searchval == "") {
         return (
-            <SafeAreaView style={styles.body}>
+            <SafeAreaView style={[styles.body, {backgroundColor: 'black'}]}>
                 <>
                     <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
                     <TextInput
@@ -32,7 +32,7 @@ const SearchScreen = ({ navigation, route }) => {
         );
     } else {
         return (
-            <SafeAreaView style={styles.body}>
+            <SafeAreaView style={[styles.body, {backgroundColor: 'black'}]}>
                 <>
                     <TextInput
                         style={styles.input}
@@ -51,4 +51,4 @@ const SearchScreen = ({ navigation, route }) => {
 
 };
 
-export default SearchScreen
+export default SearchScreen;
