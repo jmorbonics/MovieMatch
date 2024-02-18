@@ -6,7 +6,7 @@ import { UserContext } from "../App";
 const SearchScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
     const [text, setText] = useState('');
-    const [searchval, setSearch] = useState('');
+    const [searchval, setSearch] = useState("");
     
 
     const handleSubmit = async (event) => {
@@ -33,7 +33,6 @@ const SearchScreen = ({ navigation, route }) => {
         return (
             <SafeAreaView style={styles.body}>
                 <>
-                    <Text style={styles.title}>Hello {username}! Searching for {searchval}:</Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={setText}
@@ -41,6 +40,9 @@ const SearchScreen = ({ navigation, route }) => {
                         value={text}
                         placeholder="Movie Title"
                     />
+                    <Text></Text>
+                    <Text style={styles.title}>Searching for {searchval}:</Text>
+                    {/* put movie recs here */}
                 </>
             </SafeAreaView>
         );
