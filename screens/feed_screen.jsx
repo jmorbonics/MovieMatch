@@ -12,7 +12,7 @@ export default FeedScreen = ({ navigation, route }) => {
     }
 
     function handleIncrement() {
-        setUserData({ username: username, testVal: val + 1 });
+        setUserData({ username: username, data: {testVal: val + 1 }});
     }
 
     return (
