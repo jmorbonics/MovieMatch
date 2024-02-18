@@ -19,7 +19,7 @@ export const getUserData = query({
 export const setUserData = mutation({
   args: {
     username: v.string(),
-    testVal: v.number(),
+    favorites: v.array(v.id("movies")),
   },
 
   handler: async (ctx, args) => {

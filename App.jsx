@@ -25,7 +25,7 @@ function MovieMatchApp() {
 
   if (userData === null) {
     // Defualt new user data
-    userData = {username: username, testVal: 0};
+    userData = {};
   }
 
   return userData === undefined ? (
