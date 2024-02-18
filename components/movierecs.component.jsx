@@ -7,6 +7,7 @@ const MovieRecs = ({ searchWord }) => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [movieInfo, setMovieInfo] = useState(null);
 
     const getMovieRequest = async () => {
         setLoading(true);
@@ -24,10 +25,30 @@ const MovieRecs = ({ searchWord }) => {
         setLoading(false);
         }
     };
+
+    const getMovieInfo = async ( movieID ) => {
+        const url = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3d71d1bb";
+
+        try {
+            const information = await fetch(url);
+            const infoJson = await information.json();
+    
+            console.log(infoJson);
+            setMovieInfo(infoJson);
+        } catch (error) {
+            console.error("Error fetching movie information:", error);
+        }
+    };
     
     useEffect(() => {
         getMovieRequest();
     }, [searchWord]);
+
+    useEffect(() => {
+        if (selectedMovie) {
+            getMovieInfo(selectedMovie.imdbID);
+        }
+    }, [selectedMovie]);
 
     if (loading) {
         return <Text>Loading...</Text>;
@@ -54,7 +75,7 @@ const MovieRecs = ({ searchWord }) => {
                     <View style={{ margin: 10 }}>
                         <Image
                             source={{ uri: movie.Poster }}
-                            style={{ width: 266, height: 400 }}
+                            style={{ width: 333, height: 500 }}
                         />
                         <Text>{movie.Title}</Text>
                         <Text>{searchWord}</Text>
@@ -69,8 +90,12 @@ const MovieRecs = ({ searchWord }) => {
             >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, elevation: 5 }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{selectedMovie?.Title}</Text>
-                        <Text style={{ fontSize: 20, textAlign: 'center' }}>{selectedMovie?.Year}</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>{selectedMovie?.Title + " (" + selectedMovie?.Year + ")"}</Text>
+                        {movieInfo && <Text style={{ fontSize: 14, textAlign: 'center' }}>{movieInfo.Genre}</Text>}
+                        <Text style={{ fontSize: 20}}>{" "}</Text>
+                        {movieInfo && <Text style={{ fontSize: 18, textAlign: 'center' }}>{movieInfo.Plot}</Text>}
+                        <Text style={{ fontSize: 20}}>{" "}</Text>
+                        {movieInfo && <Text style={{ fontSize: 14, textAlign: 'center' }}>{movieInfo.Ratings[1].Source + ": " + movieInfo.Ratings[1].Value}</Text>}
                         <Button title="Close" onPress={closeModal} />
                     </View>
                 </View>
