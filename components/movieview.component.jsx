@@ -20,9 +20,15 @@ export default MovieView = (props) => {
         try {
             const information = await fetch(url);
             const infoJson = await information.json();
-    
-            console.log(infoJson);
+
+            if (infoJson.Genre == "Adult") {
+                infoJson.Title = "<Adult film>";
+                infoJson.Poster = "N/A";
+            }
+
             setMovieInfo(infoJson);
+            console.log("Movie fetch:");
+            console.log(infoJson);
             
         } catch (error) {
             console.error("Error fetching movie information:", error);

@@ -34,9 +34,11 @@ const MovieRecs = ({ searchWord }) => {
         <Text>Loading...</Text>
         ) : (
         <ScrollView horizontal style={{ margin: 10 }}>
-            {movies.map((movie, index) => (
+            {movies !== undefined ? movies.map((movie, index) => (
                 <MovieView key={index} movieID={movie.imdbID} />
-            ))}
+            )) :
+                <Text>No results.</Text>
+            }
         </ScrollView>
     );
 };
