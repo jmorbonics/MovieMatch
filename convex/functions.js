@@ -1,4 +1,5 @@
-import { query, mutation } from "./_generated/server";
+import { query, mutation, internalMutation } from "./_generated/server";
+import { internal, api } from "./_generated/api";
 import { v } from "convex/values"
 
 async function getUser(ctx, username) {
@@ -19,15 +20,17 @@ export const getUserData = query({
 export const setUserData = mutation({
   args: {
     username: v.string(),
-    favorites: v.array(v.id("movies")),
+    data: v.any(),
   },
 
   handler: async (ctx, args) => {
     let user = await getUser(ctx, args.username);
     if (user === null) {
-      await ctx.db.insert("user_data", args);
-    } else {
-      await ctx.db.patch(user._id, args);
+      await ctx.db.insert("user_data", {username: args.username, favorites: []});
+      user = await getUser(ctx, args.username);
     }
+
+    await ctx.db.patch(user._id, args.data);
   }
 });
+
