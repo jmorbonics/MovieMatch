@@ -61,7 +61,13 @@ const GroupsScreen = ({ navigation, route }) => {
         return (
             <SafeAreaView style={styles.body}>
                 <>
-                    {/* TODO: View members in your group here after joining/creating */}
+                    <Text style={styles.title}>Group: {group.groupname}</Text>
+                    <Text style={styles.subtitle}>Members:</Text>
+                    <View style={styles.membersContainer}>
+                        {group.usernames.map((member, index) => (
+                            <Text key={index} style={styles.member}>{member}</Text>
+                        ))}
+                    </View>
                 </>
             </SafeAreaView>
         );
