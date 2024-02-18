@@ -12,4 +12,9 @@ export default defineSchema({
     description: v.string(),
     genres: v.array( v.string() ),
   }),
+
+  group_data: defineTable({
+    groupname: v.string(),
+    memberField: v.array(v.any()),
+  }),
 });
