@@ -12,7 +12,7 @@ export default MovieView = (props) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [movieInfo, setMovieInfo] = useState(null);
     
-    const liked = userData.favorites.includes(movieID);
+    const favorited = userData.favorites.includes(movieID);
 
     const getMovieInfo = async ( movieID ) => {
         const url = "http://www.omdbapi.com/?i=" + movieID + "&apikey=3d71d1bb";
@@ -36,9 +36,9 @@ export default MovieView = (props) => {
 
     const setFavorites = useMutation(api.functions.setFavorites);
 
-    const toggleLiked = async () => {
+    const toggleFavorited = async () => {
         let newFavorites = [...userData.favorites];
-        if (!liked) {
+        if (!favorited) {
             newFavorites = newFavorites.concat(movieID);
         } else {
             var idx = newFavorites.indexOf(movieID);
@@ -61,7 +61,7 @@ export default MovieView = (props) => {
                         source={{ uri: movieInfo.Poster }}
                         style={{ width: 266, height: 400 }}
                     />
-                    <Text style={styles.movieLabel}>{movieInfo.Title + (liked ? " ❤️" : "")}</Text>
+                    <Text style={styles.movieLabel}>{movieInfo.Title + (favorited ? " ❤️" : "")}</Text>
                 </View>
             </TouchableOpacity>
         ) :
@@ -76,7 +76,7 @@ export default MovieView = (props) => {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, elevation: 5 }}>{
                     movieInfo ? (<>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>{movieInfo.Title + " (" + movieInfo.Year + ")" + (liked ? " ❤️" : "")}</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>{movieInfo.Title + " (" + movieInfo.Year + ")" + (favorited ? " ❤️" : "")}</Text>
                         <Text style={{ fontSize: 14, textAlign: 'center' }}>{movieInfo.Genre}</Text>
                         <Text style={{ fontSize: 20}}>{" "}</Text>
                         <Text style={{ fontSize: 18, textAlign: 'center' }}>{movieInfo.Plot}</Text>
@@ -85,7 +85,7 @@ export default MovieView = (props) => {
                         <Text>Loading...</Text>
                     )
                 }
-                    <Button title={!liked ? "Like" : "Unlike"} style={{ width: 50 }} onPress={toggleLiked} />
+                    <Button title={!favorited ? "Add to Favorites" : "Remove from Favorites"} onPress={toggleFavorited} />
                     <Button title="Close" onPress={() => setModalVisible(false)} />
                 </View>
             </View>
