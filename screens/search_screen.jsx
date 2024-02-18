@@ -3,7 +3,7 @@ import { Text, SafeAreaView, Button, StyleSheet, TextInput, View } from "react-n
 import styles from "../styles";
 import { UserContext } from "../App";
 
-const FeedScreen = ({ navigation, route }) => {
+const SearchScreen = ({ navigation, route }) => {
     const { username, userData, setUserData } = useContext(UserContext);
     const [text, setText] = useState('');
     

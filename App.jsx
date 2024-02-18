@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/login_screen';
 import FeedScreen from './screens/feed_screen';
 import SearchScreen from './screens/search_screen';
+import ResultScreen from './screens/result_screen';
 import { api } from "./convex/_generated/api";
 
 
@@ -55,7 +56,7 @@ function MovieMatchApp() {
                 />
                 <Tab.Screen
                   name='Results'
-                  component={ResultsScreen}
+                  component={ResultScreen}
                   options={{ title: 'Results' }}
                 />
           
