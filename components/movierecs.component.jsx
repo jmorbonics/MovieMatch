@@ -5,8 +5,10 @@ import styles from "../styles";
 const MovieRecs = ({ searchWord }) => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const getMovieRequest = async () => {
+        setLoading(true);
         const url = "http://www.omdbapi.com/?s=" + searchWord + "&apikey=3d71d1bb";
     
         try {
@@ -17,12 +19,18 @@ const MovieRecs = ({ searchWord }) => {
             setMovies(responseJson.Search);
         } catch (error) {
             console.error("Error fetching movies:", error);
+        } finally {
+        setLoading(false);
         }
     };
     
     useEffect(() => {
         getMovieRequest();
-    }, []);
+    }, [searchWord]);
+
+    if (loading) {
+        return <Text>Loading...</Text>;
+    }
 
     const handleMoviePress = (index) => {
         setSelectedMovie(movies[index]);
