@@ -6,10 +6,4 @@ export default defineSchema({
     username: v.string(),
     favorites: v.array(v.id("movies")),
   }),
-
-  movies: defineTable({
-    title: v.string(),
-    description: v.string(),
-    genres: v.array( v.string() ),
-  }),
 });
