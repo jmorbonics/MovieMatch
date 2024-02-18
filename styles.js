@@ -8,9 +8,14 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1, // Make sure the login screen fills the entire screen
-    backgroundColor: "#6e0202", // Set background to black for the login screen
+    backgroundColor: "#222222", // Set background to black for the login screen
     justifyContent: "center",
     alignItems: "center",
+  },
+  titleapp: {
+    fontSize: 50,
+    letterSpacing: 1,
+    color: '#AAA',
   },
   title: {
     backgroundColor: "#ffffff",
