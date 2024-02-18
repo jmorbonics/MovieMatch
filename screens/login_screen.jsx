@@ -26,7 +26,7 @@ const LoginScreen = ({props, navigation}) => {
 
     return (
         <SafeAreaView style={styles.background}>
-            <Text style={styles.label}>Login:</Text> {/* Add label with white font color */}
+            <Text style={styles.label}>Login:</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setText}
