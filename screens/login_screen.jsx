@@ -1,4 +1,4 @@
-import { View, Text, TextInput, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, SafeAreaView, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useState } from "react";
 import styles from "../styles";
@@ -39,6 +39,11 @@ const LoginScreen = ({props, navigation}) => {
               title='Log In'
               onPress={handleSubmit}
               style={styles.button}
+            />
+            <Image
+                source={require('../assets/logo.png')}
+                style={[styles.logo, { width: 350, height: 350 }]}
+                resizeMode="contain"
             />
             <StatusBar style='auto' />
         </SafeAreaView>
