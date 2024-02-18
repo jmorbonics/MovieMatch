@@ -26,7 +26,10 @@ const LoginScreen = ({props, navigation}) => {
 
     return (
         <SafeAreaView style={styles.background}>
-            <Text style={styles.label}>Login:</Text>
+            <Text style={styles.titleapp}>MovieMatch</Text>
+            <Text></Text>
+            <Text></Text>
+            <Text></Text>
             <TextInput
                 style={styles.input}
                 onChangeText={setText}
@@ -34,12 +37,13 @@ const LoginScreen = ({props, navigation}) => {
                 value={text}
                 placeholder="Username"
             />
-
             <Button
               title='Log In'
               onPress={handleSubmit}
               style={styles.button}
             />
+            <Text></Text>
+            <Text></Text>
             <Image
                 source={require('../assets/logo.png')}
                 style={[styles.logo, { width: 350, height: 350 }]}
