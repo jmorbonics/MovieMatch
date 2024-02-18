@@ -24,9 +24,9 @@ const LoginScreen = ({props, navigation}) => {
         }
     };
 
-    return (
+    return (  // add white button or smthn
         <View style={styles.login}>
-            <Text style={styles.label}>Login:</Text> {/* Add label with white font color */}
+            <Text style={styles.label}>Login:</Text>  
             <TextInput
                 style={styles.input}
                 onChangeText={setText}

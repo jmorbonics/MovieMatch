@@ -17,6 +17,7 @@ export const UserContext = React.createContext(null);
 
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
+  const [search, setSearch] = useState("");
 
   var userData = useQuery(api.functions.getUserData, { username: username });
   const setUserData = useMutation(api.functions.setUserData);
