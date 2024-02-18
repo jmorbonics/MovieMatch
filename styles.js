@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     fontSize: 36,
     padding: 5,
+    marginTop: 20,
     borderWidth: 5,
     textAlign: "center",
   },
@@ -58,6 +59,19 @@ const styles = StyleSheet.create({
     fontSize: 36,
     letterSpacing: 1,
     color: '#AAA',
+  },
+  div: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
 });
 

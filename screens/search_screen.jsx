@@ -5,7 +5,7 @@ import { UserContext } from "../App";
 import MovieRecs from "../components/movierecs.component";
 
 const SearchScreen = ({ navigation, route }) => {
-    const { username, userData, setUserData } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
     const [text, setText] = useState('');
     const [searchval, setSearch] = useState("");
     
@@ -17,9 +17,9 @@ const SearchScreen = ({ navigation, route }) => {
     
     if (searchval == "") {
         return (
-            <SafeAreaView style={[styles.body, {backgroundColor: 'black'}]}>
+            <SafeAreaView style={[styles.body, {backgroundColor: "#222222"}]}>
                 <>
-                    <Text style={styles.title}>Hello {username}! Search for a Movie below:</Text>
+                    <Text style={styles.title}>Search for a movie below:</Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={setText}
@@ -32,17 +32,20 @@ const SearchScreen = ({ navigation, route }) => {
         );
     } else {
         return (
-            <SafeAreaView style={[styles.body, {backgroundColor: 'black'}]}>
+            <SafeAreaView style={[styles.body, {backgroundColor: "#222222"}]}>
                 <>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setText}
-                        onSubmitEditing={handleSubmit}
-                        value={text}
-                        placeholder="Movie Title"
-                    />
-                    <Text></Text>
-                    <Text style={styles.title}>Searching for {searchval}:</Text>
+                    <View style={styles.container}>
+                        <View style={styles.box}>
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={setText}
+                                onSubmitEditing={handleSubmit}
+                                value={text}
+                                placeholder="Movie Title"
+                            />
+                        </View>
+                        <Text style={styles.title}>Searching for {searchval}</Text>
+                    </View>
                     <MovieRecs searchWord={searchval}></MovieRecs>
                 </>
             </SafeAreaView>

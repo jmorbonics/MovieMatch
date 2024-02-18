@@ -95,7 +95,7 @@ const MovieRecs = ({ searchWord }) => {
                         <Text style={{ fontSize: 20}}>{" "}</Text>
                         {movieInfo && <Text style={{ fontSize: 18, textAlign: 'center' }}>{movieInfo.Plot}</Text>}
                         <Text style={{ fontSize: 20}}>{" "}</Text>
-                        {movieInfo && <Text style={{ fontSize: 14, textAlign: 'center' }}>{movieInfo.Ratings[1].Source + ": " + movieInfo.Ratings[1].Value}</Text>}
+                        {movieInfo && <Text style={{ fontSize: 14, textAlign: 'center' }}>{/*movieInfo.Ratings[1].Source + ": " + movieInfo.Ratings[1].Value*/}</Text>}
                         <Button title="Close" onPress={closeModal} />
                     </View>
                 </View>

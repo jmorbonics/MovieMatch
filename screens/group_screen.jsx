@@ -1,78 +1,95 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Text, SafeAreaView, Button, StyleSheet, TextInput, View } from "react-native";
+import { Text, SafeAreaView, Button, StyleSheet, TextInput, View, FlatList } from "react-native";
 import styles from "../styles";
 import { UserContext } from "../App";
-import MovieRecs from "../components/movierecs.component";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
 
-const GroupsScreen = ({ navigation, route }) => {
-    const { username, userData, setUserData } = useContext(UserContext);
+const GroupJoinCreate = () => {
+    const { userData } = useContext(UserContext);
 
-    const [text, setText] = useState('');
-    const [group, setGroup] = useState({ groupname: "", usernames: [] });
-    
+    const [joinText, setJoinText] = useState("");
+    const [createText, setCreateText] = useState("");
 
-    const createGroup = async (event) => {
-        setGroup({ groupname: text, username });
+    const addToGroup = useMutation(api.functions.addToGroup);
+    const createGroup = useMutation(api.functions.createGroup);
+    const isValidID = useQuery(api.functions.isValidGroupID, {id: joinText});
+
+    const handleJoinGroup = async (event) => {
+        event.preventDefault();
+        if (isValidID) {
+            addToGroup({userID: userData._id, groupID: joinText});
+        }
+        setJoinText("");
     };
 
-    const joinGroup = async (event) => {
-        // Query the group_data table to get the existing group data
-        const existingGroups = await convex.query({
-            find: 'group_data',
-            where: { groupname: text }
-        });
-    
-        // Assuming there is only one group with the given groupname
-        if (existingGroups.length > 0) {
-            const existingGroup = existingGroups[0];
-            const updatedGroup = { ...existingGroup, usernames: [...existingGroup.usernames, username] };
-            await convex.update('group_data', existingGroup.id, updatedGroup);
-            setGroup(updatedGroup);
+    const handleCreateGroup = async (event) => {
+        event.preventDefault();
+        let regex = new RegExp(/^[a-zA-Z0-9 ]+$/);
+        console.log("ID: " + userData._id);
+        if (regex.test(createText)) {
+            createGroup({userID: userData._id, groupname: createText});
         }
-    }
+        setCreateText("");
+    };
 
+    return (<>
+        <Text style={styles.title}>Join a Group:</Text>    
+        <TextInput
+            style={styles.input}
+            onChangeText={setJoinText}
+            onSubmitEditing={handleJoinGroup}
+            value={joinText}
+            placeholder="Group ID"
+        />
+        <Text style={styles.title}>Create a Group:</Text>
+        <TextInput
+            style={styles.input}
+            onChangeText={setCreateText}
+            onSubmitEditing={handleCreateGroup}
+            value={createText}
+            placeholder="Group name"
+        />
+    </>);
+};
+
+const GroupMenu = (props) => {
+    const { userData } = useContext(UserContext);
+    const { groupData } = props;
+
+    const members = useQuery(api.functions.getUserDataList, {list: groupData.members});
+
+    return (
+    <>
+        <Text style={styles.title}>Group:</Text>
+        <Text style={styles.title}>{groupData.groupname}</Text>
+        <Text style={styles.body}>Group ID: {userData.groupID}</Text>
+        
+        <View>
+            <Text style={styles.body}>Members:</Text>
+            <FlatList 
+                title="Members:"
+                data={members}
+                renderItem={(m) => <Text style={styles.body}>{m.item === undefined ? "Loading..." : m.item.username}</Text>}
+            />
+        </View>
+    </>);
+}
+
+const GroupsScreen = ({ navigation, route }) => {
+    const { userData } = useContext(UserContext);
+    const groupData = useQuery(api.functions.getGroupData, {groupID: userData.groupID});
     
-    if (group.groupname == "") {
-        return (
-            <SafeAreaView style={styles.body}>
-                <>
-                    <Text style={styles.title}>Hello {username}! Join a Group:</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setText}
-                        onSubmitEditing={joinGroup}
-                        value={text}
-                        placeholder="Group Name"
-                    />
-                    <Text> </Text>
-                    <Text> </Text>
-                    <Text style={styles.title}>Or, Create Your Own:</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setText}
-                        onSubmitEditing={createGroup}
-                        value={text}
-                        placeholder="Group Name"
-                    />
-                </>
-            </SafeAreaView>
-        );
-    } else {
-        return (
-            <SafeAreaView style={styles.body}>
-                <>
-                    <Text style={styles.title}>Group: {group.groupname}</Text>
-                    <Text style={styles.subtitle}>Members:</Text>
-                    <View style={styles.membersContainer}>
-                        {group.usernames.map((member, index) => (
-                            <Text key={index} style={styles.member}>{member}</Text>
-                        ))}
-                    </View>
-                </>
-            </SafeAreaView>
-        );
-    }
-
+    return (
+        <SafeAreaView style={styles.body}>{
+            userData.groupID === undefined ? (
+                <GroupJoinCreate />
+            ) : groupData === undefined ? (
+                <Text style={styles.loading}>Loading...</Text>
+            ) : (
+                <GroupMenu groupData={groupData} />
+        )}</SafeAreaView>
+    );
 };
 
 export default GroupsScreen

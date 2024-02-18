@@ -22,64 +22,58 @@ export const UserContext = React.createContext(null);
 function MovieMatchApp() {
   const [username, setUsername] = useState("");
 
-  var userData = useQuery(api.functions.getUserData, { username: username});
-  const setUserData = useMutation(api.functions.setUserData);
+  var userData = useQuery(api.functions.searchUsername, { username: username});
+  var createUser = useMutation(api.functions.createUser);
 
-  if (userData === null) {
-    // Defualt new user data
-    userData = {};
+  if (username.length > 0 && userData === null) {
+    createUser({username: username});
   }
 
-  return userData === undefined ? (
+  return username.length == 0 ? (
+    <LoginScreen handleLogin={setUsername} />
+  ) : userData === undefined || userData === null ? (
       <SafeAreaView style={styles.background}>
         <Text style={styles.loading}>Loading...</Text>
       </SafeAreaView>
-    ) : (
-      <UserContext.Provider value={{ username: username, setUsername: setUsername, userData: userData, setUserData: setUserData }}>
-         {
-          username.length == 0 ? (
-            <LoginScreen />
-          ) : (
-            <NavigationContainer>
-              <Tab.Navigator screenOptions={{ headerShown: false }}>
-                <Tab.Screen
-                  name='Feed'
-                  component={FeedScreen}
-                  options={{
+    ) :   (
+      <UserContext.Provider value={{ userData: userData }}>
+        <NavigationContainer>
+          <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Screen
+              name='Feed'
+              component={FeedScreen}
+              options={{
                     title: 'Feed',
                     tabBarLabel: 'Feed',
                     tabBarIcon: ({ color, size }) => (
                       <Ionicons name="home" color={color} size={size} />
                     ),
                   }}
-                />
-                <Tab.Screen
-                  name='Search'
-                  component={SearchScreen}
-                  options={{
+            />
+            <Tab.Screen
+              name='Search'
+              component={SearchScreen}
+              options={{
                     title: 'Search',
                     tabBarLabel: 'Search',
                     tabBarIcon: ({ color, size }) => (
                       <Ionicons name="search" color={color} size={size} />
                     ),
                   }}
-                />
-                <Tab.Screen
-                  name='Groups'
-                  component={GroupsScreen}
-                  options={{
+            />
+            <Tab.Screen
+              name='Groups'
+              component={GroupsScreen}
+              options={{
                     title: 'Groups',
                     tabBarLabel: 'Groups',
                     tabBarIcon: ({ color, size }) => (
                       <Ionicons name="list" color={color} size={size} />
                     ),
                   }}
-                />
-              </Tab.Navigator>
-            </NavigationContainer>
-          
-          )
-          }
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
       </UserContext.Provider>
   );
 }

@@ -5,19 +5,10 @@ import { UserContext } from "../App";
 import RandomMovieGenerator from "../components/randommovie.component";
 
 export default FeedScreen = ({ navigation, route }) => {
-    const { username, userData, setUserData } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
 
     const [seed, setSeed] = useState(Math.random());
-    
-    let val = userData.testVal;
-    if (val === undefined) {
-        val = 0;
-    }
-
-    function handleIncrement() {
-        setUserData({ username: username, data: {testVal: val + 1 }});
-    }
-
+ 
     function handleRefresh() {
         setSeed(Math.random());
     }
